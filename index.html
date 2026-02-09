@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ongage - Enterprise Email Infrastructure</title>
+<!-- Fonts: Inter for that clean, technical look -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Tailwind & Iconify -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+},
+colors: {
+background: '#ffffff',
+surface: '#FAFAFA',
+surfaceHover: '#F5F5F5',
+border: '#E5E7EB',
+primary: '#0F172A',
+secondary: '#64748B',
+accent: '#6366f1',
+},
+boxShadow: {
+'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+'elevation': '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
+'glow': '0 0 40px -10px rgba(99, 102, 241, 0.15)',
+'inner-light': 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.1)',
+},
+letterSpacing: {
+tight: '-0.025em',
+tighter: '-0.04em',
+},
+animation: {
+'fade-in': 'fadeIn 0.8s ease-out forwards',
+'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+'float': 'float 6s ease-in-out infinite',
+'shimmer': 'shimmer 2s linear infinite',
+},
+keyframes: {
+fadeIn: {
+'0%': { opacity: '0', transform: 'translateY(10px)' },
+'100%': { opacity: '1', transform: 'translateY(0)' },
+},
+float: {
+'0%, 100%': { transform: 'translateY(0)' },
+'50%': { transform: 'translateY(-10px)' },
+},
+shimmer: {
+'0%': { transform: 'translateX(-100%) skewX(-12deg)' },
+'100%': { transform: 'translateX(200%) skewX(-12deg)' },
+}
+}
+}
+}
+}
+</script>
+<style>
+body {
+background-color: #ffffff;
+background-image:
+radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.03) 0%, transparent 60%),
+linear-gradient(rgba(243, 244, 246, 0.6) 1px, transparent 1px),
+linear-gradient(90deg, rgba(243, 244, 246, 0.6) 1px, transparent 1px);
+background-size: 100% 100%, 32px 32px, 32px 32px;
+mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+-webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+min-height: 100vh;
+}
+.glass-nav {
+background: rgba(255, 255, 255, 0.75);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+::-webkit-scrollbar {
+width: 4px;
+height: 4px;
+}
+::-webkit-scrollbar-track {
+background: transparent;
+}
+::-webkit-scrollbar-thumb {
+background: #E5E7EB;
+border-radius: 2px;
+}
+.gradient-text {
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-image: linear-gradient(to bottom right, #0F172A, #475569);
+}
+.dot-matrix {
+background-image: radial-gradient(#334155 1px, transparent 1px);
+background-size: 20px 20px;
+}
+</style></head>
+<body class="antialiased text-primary selection:bg-accent/10 selection:text-accent">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav h-14 transition-all">
+        <div class="max-w-[1100px] w-full mx-auto px-6 h-full flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-7 h-7 bg-primary text-white rounded-[6px] flex items-center justify-center shadow-subtle group-hover:scale-95 transition-transform duration-200">
+                        <iconify-icon icon="solar:layers-minimalistic-bold" width="16"></iconify-icon>
+                    </div>
+                    <span class="font-semibold text-sm tracking-tight text-primary">Ongage</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#" class="text-[13px] font-medium text-secondary hover:text-primary transition-colors">Platform</a>
+                    <a href="#" class="text-[13px] font-medium text-secondary hover:text-primary transition-colors">Solutions</a>
+                    <a href="#" class="text-[13px] font-medium text-secondary hover:text-primary transition-colors">Developers</a>
+                    <a href="#" class="text-[13px] font-medium text-secondary hover:text-primary transition-colors">Pricing</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button class="text-secondary hover:text-primary transition-colors">
+                    <iconify-icon icon="solar:magnifer-linear" width="20"></iconify-icon>
+                </button>
+                <div class="h-4 w-[1px] bg-border mx-1"></div>
+                <a href="#" class="text-[13px] font-medium text-secondary hover:text-primary transition-colors">Sign in</a>
+                <a href="#" class="bg-primary hover:bg-neutral-800 text-white text-[13px] font-medium px-3.5 py-1.5 rounded-[6px] transition-colors shadow-subtle flex items-center gap-1.5 border border-transparent hover:border-white/20">
+                    Start Building
+                    <iconify-icon icon="solar:arrow-right-linear" width="12" class="opacity-70"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 px-6 overflow-hidden">
+        <div class="max-w-[1100px] mx-auto">
+
+            <!-- Hero Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+                <div class="inline-flex items-center gap-2 border border-border/60 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full mb-8 shadow-subtle hover:border-border transition-colors cursor-pointer group">
+                    <span class="flex h-1.5 w-1.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent"></span>
+                    </span>
+                    <span class="text-[12px] font-medium text-secondary group-hover:text-primary transition-colors">New: Smart Routing v2.0</span>
+                    <iconify-icon icon="solar:arrow-right-linear" width="12" class="text-secondary group-hover:translate-x-0.5 transition-transform"></iconify-icon>
+                </div>
+
+                <h1 class="text-5xl md:text-[64px] font-semibold tracking-tighter text-primary mb-6 leading-[1.05] gradient-text">
+                    Email infrastructure for<br>developers who ship.
+                </h1>
+
+                <p class="text-lg text-secondary max-w-xl mx-auto mb-10 leading-relaxed font-normal tracking-tight">
+                    A complete toolkit to orchestrate transactional emails, manage deliverability at scale, and visualize engagement in real-time.
+                </p>
+
+                <div class="flex items-center justify-center gap-3">
+                    <button class="bg-primary text-white text-[14px] font-medium pl-5 pr-4 py-2.5 rounded-[8px] hover:bg-[#252525] transition-all flex items-center gap-2 shadow-lg shadow-gray-200/50">
+                        Deploy Now
+                        <iconify-icon icon="solar:alt-arrow-right-linear" width="16" class="text-white/60"></iconify-icon>
+                    </button>
+                    <div class="relative group">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-gray-200 to-gray-100 rounded-[9px] blur opacity-40 group-hover:opacity-75 transition duration-200"></div>
+                        <button class="relative bg-white text-primary border border-border text-[14px] font-medium px-5 py-2.5 rounded-[8px] hover:bg-surface transition-all flex items-center gap-2">
+                            <iconify-icon icon="solar:book-2-linear" width="16" class="text-secondary"></iconify-icon>
+                            Documentation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual: Split Code/Preview View -->
+            <div class="relative w-full h-[540px] rounded-xl border border-border bg-white shadow-elevation overflow-hidden flex animate-fade-in" style="animation-delay: 0.1s;">
+
+                <!-- Left: IDE / Configuration -->
+                <div class="w-full md:w-[45%] bg-[#0F1115] flex flex-col border-r border-white/10 relative z-10">
+                    <!-- IDE Header -->
+                    <div class="h-10 border-b border-white/5 flex items-center px-4 justify-between bg-[#0F1115]">
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#EC5E5E]"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#F5BB41]"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-[#59C173]"></div>
+                        </div>
+                        <span class="text-[11px] text-white/40 font-mono flex items-center gap-1.5">
+                            <iconify-icon icon="solar:file-code-linear" width="12"></iconify-icon>
+                            send-campaign.ts
+                        </span>
+                        <div class="w-4"></div>
+                    </div>
+
+                    <!-- IDE Body -->
+                    <div class="p-6 font-mono text-[12px] leading-6 text-white/80 overflow-hidden relative">
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">1</span><span class="text-purple-400">import</span> <span class="text-blue-300">{</span> Client <span class="text-blue-300">}</span> <span class="text-purple-400">from</span> <span class="text-green-300">'@ongage/node'</span>;</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">2</span></div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">3</span><span class="text-purple-400">const</span> ongage = <span class="text-purple-400">new</span> <span class="text-yellow-300">Client</span>(process.env.API_KEY);</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">4</span></div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">5</span><span class="text-purple-400">await</span> ongage.emails.<span class="text-blue-400">send</span>({</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">6</span>&nbsp;&nbsp;to: <span class="text-green-300">['user@example.com']</span>,</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">7</span>&nbsp;&nbsp;template: <span class="text-green-300">'onboarding-v2'</span>,</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">8</span>&nbsp;&nbsp;data: {</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">9</span>&nbsp;&nbsp;&nbsp;&nbsp;name: <span class="text-green-300">'Alex'</span>,</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">10</span>&nbsp;&nbsp;&nbsp;&nbsp;role: <span class="text-green-300">'Admin'</span>,</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">11</span>&nbsp;&nbsp;},</div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">12</span>&nbsp;&nbsp;provider_routing: <span class="text-green-300">'smart_optimize'</span></div>
+                        <div class="flex"><span class="text-white/20 w-6 select-none text-right pr-3">13</span>});</div>
+
+                        <!-- Terminal Simulation -->
+                        <div class="absolute bottom-0 left-0 w-full bg-[#1A1D23] border-t border-white/5">
+                            <div class="px-4 py-2 flex items-center justify-between">
+                                <span class="text-[10px] uppercase tracking-widest text-white/30">Terminal — Ready</span>
+                                <div class="flex gap-1">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white/10"></div>
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white/10"></div>
+                                </div>
+                            </div>
+                            <div class="px-4 pb-4 space-y-1.5">
+                                <div class="flex gap-2 text-[11px]">
+                                    <span class="text-green-400">➜</span>
+                                    <span>Compiling template... <span class="text-white/40">12ms</span></span>
+                                </div>
+                                 <div class="flex gap-2 text-[11px]">
+                                    <span class="text-green-400">➜</span>
+                                    <span>Optimizing route... <span class="text-blue-300">AWS (us-east-1)</span></span>
+                                </div>
+                                <div class="flex gap-2 text-[11px]">
+                                    <span class="text-green-400">➜</span>
+                                    <span>200 OK: <span class="text-gray-400">id_8921x...</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visualization / Analytics -->
+                <div class="hidden md:flex flex-1 flex-col bg-surface/30 backdrop-blur-sm relative">
+                    <!-- Header -->
+                    <div class="h-10 border-b border-border flex items-center justify-between px-4 bg-white/60">
+                         <div class="flex items-center gap-2">
+                            <iconify-icon icon="solar:graph-new-linear" class="text-secondary" width="14"></iconify-icon>
+                            <span class="text-[11px] font-medium text-primary uppercase tracking-wide">Live Telemetry</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20">
+                            <span class="w-1 h-1 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[10px] font-semibold text-green-700">Connected</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-3 gap-3 mb-6">
+                            <div class="bg-white border border-border rounded-lg p-3 shadow-sm">
+                                <span class="text-[10px] text-secondary font-medium uppercase tracking-wide">Delivered</span>
+                                <div class="flex items-end gap-2 mt-1">
+                                    <span class="text-xl font-semibold tracking-tight">99.8%</span>
+                                    <span class="text-[10px] text-green-600 mb-1">↑</span>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-border rounded-lg p-3 shadow-sm">
+                                <span class="text-[10px] text-secondary font-medium uppercase tracking-wide">Latency</span>
+                                <div class="flex items-end gap-2 mt-1">
+                                    <span class="text-xl font-semibold tracking-tight">142ms</span>
+                                    <span class="text-[10px] text-secondary mb-1">avg</span>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-border rounded-lg p-3 shadow-sm">
+                                <span class="text-[10px] text-secondary font-medium uppercase tracking-wide">Opened</span>
+                                <div class="flex items-end gap-2 mt-1">
+                                    <span class="text-xl font-semibold tracking-tight">42.3%</span>
+                                    <span class="text-[10px] text-green-600 mb-1">↑</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Graph Area -->
+                        <div class="bg-white border border-border rounded-lg p-4 shadow-sm flex-1 relative overflow-hidden flex flex-col">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-xs font-medium text-primary flex items-center gap-1">
+                                    <iconify-icon icon="solar:clock-circle-linear" width="12"></iconify-icon>
+                                    Throughput (Last hour)
+                                </span>
+                            </div>
+
+                            <!-- Graph Bars -->
+                            <div class="flex-1 flex items-end justify-between gap-1.5 px-1 pb-2 border-b border-border/50 border-dashed">
+                                <div class="w-full bg-secondary/10 rounded-sm h-[30%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[45%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[35%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[60%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[50%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[70%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[65%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[80%]"></div>
+                                <div class="w-full bg-primary rounded-sm h-[90%] shadow-lg relative group transition-all hover:bg-accent">
+                                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-primary text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-20">
+                                        2,401 emails
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-primary"></div>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[75%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[60%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[50%]"></div>
+                                <div class="w-full bg-secondary/10 rounded-sm h-[40%]"></div>
+                            </div>
+
+                            <!-- Activity Stream -->
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center justify-between text-[10px]">
+                                    <span class="text-secondary font-mono">POST /v1/batch/send</span>
+                                    <span class="px-1.5 py-0.5 bg-green-100 text-green-700 rounded text-[9px] font-medium">200 OK</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[10px] opacity-60">
+                                    <span class="text-secondary font-mono">WEBHOOK event.delivered</span>
+                                    <span class="px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded text-[9px] font-medium">SYNC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trusted By -->
+            <div class="mt-20 text-center border-t border-border pt-10">
+                <p class="text-[11px] font-semibold text-secondary uppercase tracking-widest mb-8">Trusted by data-driven teams</p>
+                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="flex items-center gap-2 text-primary font-bold text-lg"><iconify-icon icon="solar:database-bold" width="22"></iconify-icon> Stripe</div>
+                    <div class="flex items-center gap-2 text-primary font-bold text-lg"><iconify-icon icon="solar:cloud-bold" width="22"></iconify-icon> Vercel</div>
+                    <div class="flex items-center gap-2 text-primary font-bold text-lg"><iconify-icon icon="solar:shop-bold" width="22"></iconify-icon> Shopify</div>
+                    <div class="flex items-center gap-2 text-primary font-bold text-lg"><iconify-icon icon="solar:code-square-bold" width="22"></iconify-icon> Lattice</div>
+                    <div class="flex items-center gap-2 text-primary font-bold text-lg"><iconify-icon icon="solar:pie-chart-bold" width="22"></iconify-icon> Linear</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Bento Grid -->
+    <section class="py-24 px-6 bg-surface/30 border-t border-border">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl font-semibold tracking-tight text-primary mb-4">Everything you need to send<br>with confidence.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Feature 1: Template Engine -->
+                <div class="col-span-1 md:col-span-2 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row h-full">
+                    <div class="p-8 flex flex-col justify-center md:w-1/2 relative z-10">
+                        <div class="w-10 h-10 bg-surface border border-border rounded-[8px] flex items-center justify-center mb-6 text-primary">
+                            <iconify-icon icon="solar:pen-new-square-linear" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">Visual Template Builder</h3>
+                        <p class="text-sm text-secondary leading-relaxed">
+                            Drag, drop, and customize logic. Our hybrid editor lets developers write code while marketers tweak copy, all in one synchronized workspace.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 bg-surface/50 border-l border-border relative flex items-center justify-center p-6 overflow-hidden">
+                        <div class="bg-white border border-border rounded-lg shadow-sm w-full max-w-[320px] h-[220px] flex overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="w-12 border-r border-border bg-gray-50 flex flex-col items-center py-3 gap-3">
+                                <div class="w-6 h-6 rounded bg-white border border-border shadow-sm"></div>
+                                <div class="w-6 h-6 rounded bg-white border border-border shadow-sm"></div>
+                                <div class="w-6 h-6 rounded bg-white border border-border shadow-sm"></div>
+                                <div class="mt-auto w-6 h-6 rounded-full bg-gray-200"></div>
+                            </div>
+                            <div class="flex-1 p-4 bg-white relative">
+                                <div class="absolute top-2 right-2 flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                </div>
+                                <div class="border border-dashed border-gray-200 rounded p-2 h-full flex flex-col gap-2">
+                                    <div class="h-20 bg-gray-100 rounded w-full flex items-center justify-center text-[10px] text-gray-400">Header Image</div>
+                                    <div class="space-y-1.5 p-1">
+                                        <div class="h-2 bg-gray-100 rounded w-3/4"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-full"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-5/6"></div>
+                                    </div>
+                                    <div class="h-6 w-24 bg-primary text-white text-[8px] flex items-center justify-center rounded self-start mt-2">View Order</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Logs -->
+                <div class="col-span-1 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden h-[400px]">
+                    <div class="p-8 h-full flex flex-col relative z-10">
+                        <div class="w-10 h-10 bg-surface border border-border rounded-[8px] flex items-center justify-center mb-6 text-primary">
+                            <iconify-icon icon="solar:history-linear" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">90-Day Retention</h3>
+                        <p class="text-sm text-secondary leading-relaxed mb-6">
+                            Trace every event. Search millions of logs in milliseconds to debug delivery issues.
+                        </p>
+
+                        <div class="mt-auto -mx-8 -mb-8 border-t border-border">
+                            <div class="bg-surface/30 p-4 space-y-2">
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm hover:border-red-200 transition-colors cursor-default">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]"></div>
+                                        <span class="font-mono text-primary font-medium">bounce</span>
+                                    </div>
+                                    <span class="text-secondary">2m ago</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm opacity-60">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                        <span class="font-mono text-secondary">delivered</span>
+                                    </div>
+                                    <span class="text-secondary">4m ago</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm opacity-40">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                        <span class="font-mono text-secondary">open</span>
+                                    </div>
+                                    <span class="text-secondary">5m ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Smart Routing -->
+                <div class="col-span-1 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="w-10 h-10 bg-surface border border-border rounded-[8px] flex items-center justify-center mb-6 text-primary">
+                            <iconify-icon icon="solar:route-linear" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">Intelligent Routing</h3>
+                        <p class="text-sm text-secondary leading-relaxed mb-8">
+                            Automatically switch between SendGrid, SES, and Mailgun based on performance.
+                        </p>
+
+                        <div class="relative flex-1 min-h-[140px] flex flex-col items-center justify-center">
+                            <div class="absolute inset-0 flex justify-center">
+                                <div class="w-[1px] h-full bg-gradient-to-b from-border via-border to-transparent"></div>
+                                <div class="absolute top-1/2 w-32 h-[1px] bg-border"></div>
+                                <div class="absolute top-1/2 -left-4 h-12 w-[1px] bg-border mt-0 origin-top rotate-0"></div>
+                                <div class="absolute top-1/2 left-4 h-12 w-[1px] bg-border mt-0 origin-top rotate-0"></div>
+                            </div>
+
+                            <div class="z-10 bg-white border border-border text-[10px] px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1 mb-6 animate-pulse-slow">
+                                <iconify-icon icon="solar:settings-linear" width="12"></iconify-icon>
+                                Optimization Engine
+                            </div>
+
+                            <div class="flex gap-4 z-10 w-full justify-between px-2 mt-auto">
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-xs group-hover:border-green-400 group-hover:text-green-600 transition-colors">
+                                        <iconify-icon icon="solar:server-linear" width="14"></iconify-icon>
+                                    </div>
+                                    <span class="text-[8px] text-secondary font-mono">AWS</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-xs opacity-50">
+                                        <iconify-icon icon="solar:server-linear" width="14"></iconify-icon>
+                                    </div>
+                                    <span class="text-[8px] text-secondary font-mono">GCP</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-xs opacity-50">
+                                        <iconify-icon icon="solar:server-linear" width="14"></iconify-icon>
+                                    </div>
+                                    <span class="text-[8px] text-secondary font-mono">MG</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4: A/B Testing -->
+                <div class="col-span-1 md:col-span-2 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row-reverse h-full">
+                    <div class="p-8 flex flex-col justify-center md:w-1/2 relative z-10">
+                        <div class="w-10 h-10 bg-surface border border-border rounded-[8px] flex items-center justify-center mb-6 text-primary">
+                            <iconify-icon icon="solar:tuning-square-2-linear" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">Multivariate Experiments</h3>
+                        <p class="text-sm text-secondary leading-relaxed">
+                            Test subject lines, send times, and content variations. We handle the statistical significance and winner selection.
+                        </p>
+                    </div>
+
+                    <div class="md:w-1/2 bg-surface/50 border-r border-border relative flex items-center justify-center p-8 overflow-hidden">
+                        <div class="bg-white border border-border rounded-xl shadow-sm w-full max-w-[280px] p-4 transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold text-secondary uppercase tracking-wider">Open Rate Test</span>
+                                <span class="text-[10px] text-green-600 bg-green-50 border border-green-100 px-1.5 py-0.5 rounded font-medium">Winner Found</span>
+                            </div>
+
+                            <div class="mb-3 group/item">
+                                <div class="flex justify-between text-[11px] mb-1.5">
+                                    <span class="text-secondary">Variant A</span>
+                                    <span class="font-mono text-secondary">24.8%</span>
+                                </div>
+                                <div class="h-2 w-full bg-surface border border-border/50 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gray-300 rounded-full w-[24%]"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-1 group/item">
+                                <div class="flex justify-between text-[11px] mb-1.5">
+                                    <span class="text-primary font-medium">Variant B</span>
+                                    <span class="font-mono text-primary font-medium">62.1%</span>
+                                </div>
+                                <div class="h-2 w-full bg-surface border border-border/50 rounded-full overflow-hidden relative">
+                                    <div class="absolute inset-0 bg-primary w-[62%] rounded-full shadow-[0_0_10px_rgba(15,23,42,0.3)]"></div>
+                                    <div class="absolute inset-0 w-[62%] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-shimmer"></div>
+                                </div>
+                                <div class="mt-2 flex items-center gap-1 text-[10px] text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <iconify-icon icon="solar:star-bold" width="10"></iconify-icon>
+                                    Winning variation
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Edge Network Section -->
+    <section class="py-24 bg-[#050505] relative overflow-hidden border-y border-white/10">
+        <div class="absolute inset-0 dot-matrix opacity-20 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
+
+        <div class="max-w-[1100px] mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-2.5 py-1 rounded-full mb-6">
+                    <span class="flex h-1.5 w-1.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                    </span>
+                    <span class="text-[11px] font-medium text-white/70 tracking-wide">Global Edge Network</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">Delivered from the nearest region.</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Requests are routed to the closest edge node, minimizing latency before optimizing for downstream provider performance.
+                </p>
+            </div>
+
+            <div class="relative w-full h-[300px] md:h-[450px] border border-white/10 rounded-2xl bg-[#0A0A0A] shadow-2xl overflow-hidden mb-12">
+                <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+                <div class="absolute top-[35%] left-[28%] flex flex-col items-center group cursor-default">
+                    <div class="relative flex items-center justify-center w-4 h-4">
+                        <div class="absolute w-full h-full bg-accent/30 rounded-full animate-ping"></div>
+                        <div class="relative w-2 h-2 bg-accent rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"></div>
+                    </div>
+                    <div class="mt-2 px-2 py-1 bg-[#151515] border border-white/10 rounded text-[10px] text-white font-mono opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0">
+                        US-EAST-1 (24ms)
+                    </div>
+                </div>
+
+                <div class="absolute top-[32%] left-[48%] flex flex-col items-center group cursor-default">
+                    <div class="relative flex items-center justify-center w-4 h-4">
+                        <div class="absolute w-full h-full bg-accent/30 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                        <div class="relative w-2 h-2 bg-accent rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"></div>
+                    </div>
+                    <div class="mt-2 px-2 py-1 bg-[#151515] border border-white/10 rounded text-[10px] text-white font-mono opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0">
+                        EU-CENTRAL (31ms)
+                    </div>
+                </div>
+
+                <div class="absolute top-[45%] left-[75%] flex flex-col items-center group cursor-default">
+                    <div class="relative flex items-center justify-center w-4 h-4">
+                        <div class="absolute w-full h-full bg-accent/30 rounded-full animate-ping" style="animation-delay: 2s;"></div>
+                        <div class="relative w-2 h-2 bg-accent rounded-full shadow-[0_0_10px_rgba(99,102,241,0.8)]"></div>
+                    </div>
+                    <div class="mt-2 px-2 py-1 bg-[#151515] border border-white/10 rounded text-[10px] text-white font-mono opacity-0 group-hover:opacity-100 transition-opacity translate-y-1 group-hover:translate-y-0">
+                        AP-SOUTH (45ms)
+                    </div>
+                </div>
+
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20">
+                    <path d="M 330 180 Q 480 100 560 160" fill="none" stroke="white" stroke-width="1" stroke-dasharray="4 4"></path>
+                    <path d="M 560 160 Q 750 200 860 220" fill="none" stroke="white" stroke-width="1" stroke-dasharray="4 4"></path>
+                </svg>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-white/5 rounded-lg border border-white/10">
+                    <div class="text-2xl font-bold text-white mb-1">28</div>
+                    <div class="text-xs text-gray-400">Global Regions</div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-lg border border-white/10">
+                    <div class="text-2xl font-bold text-white mb-1">99.99%</div>
+                    <div class="text-xs text-gray-400">Uptime SLA</div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-lg border border-white/10">
+                    <div class="text-2xl font-bold text-white mb-1">&lt;50ms</div>
+                    <div class="text-xs text-gray-400">Global Latency</div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-lg border border-white/10">
+                    <div class="text-2xl font-bold text-white mb-1">10B+</div>
+                    <div class="text-xs text-gray-400">Daily Requests</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Ecosystem -->
+    <section class="py-24 px-6 bg-white border-b border-border">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl font-semibold tracking-tight text-primary mb-2">Connects with your stack.</h2>
+                    <p class="text-secondary">Sync events and logs with your favorite tools.</p>
+                </div>
+                <button class="mt-4 md:mt-0 text-[13px] font-medium text-primary border border-border px-4 py-2 rounded-[6px] hover:bg-surface transition-colors">
+                    View all 50+ integrations
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-6 border border-border rounded-xl bg-surface/30 hover:border-accent/50 hover:shadow-card transition-all cursor-pointer group">
+                    <div class="w-10 h-10 bg-white border border-border rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform text-primary">
+                        <iconify-icon icon="solar:chart-square-linear" width="20"></iconify-icon>
+                    </div>
+                    <h4 class="font-semibold text-sm text-primary">Segment</h4>
+                    <p class="text-xs text-secondary mt-1">Sync email events to your warehouse.</p>
+                </div>
+                <div class="p-6 border border-border rounded-xl bg-surface/30 hover:border-accent/50 hover:shadow-card transition-all cursor-pointer group">
+                    <div class="w-10 h-10 bg-white border border-border rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform text-primary">
+                         <iconify-icon icon="solar:graph-up-linear" width="20"></iconify-icon>
+                    </div>
+                    <h4 class="font-semibold text-sm text-primary">Datadog</h4>
+                    <p class="text-xs text-secondary mt-1">Visualize delivery metrics.</p>
+                </div>
+                <div class="p-6 border border-border rounded-xl bg-surface/30 hover:border-accent/50 hover:shadow-card transition-all cursor-pointer group">
+                    <div class="w-10 h-10 bg-white border border-border rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform text-primary">
+                         <iconify-icon icon="solar:chat-round-linear" width="20"></iconify-icon>
+                    </div>
+                    <h4 class="font-semibold text-sm text-primary">Slack</h4>
+                    <p class="text-xs text-secondary mt-1">Get alerts on bounce spikes.</p>
+                </div>
+                <div class="p-6 border border-border rounded-xl bg-surface/30 hover:border-accent/50 hover:shadow-card transition-all cursor-pointer group">
+                    <div class="w-10 h-10 bg-white border border-border rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform text-primary">
+                         <iconify-icon icon="solar:cloud-check-linear" width="24"></iconify-icon>
+                    </div>
+                    <h4 class="font-semibold text-sm text-primary">Salesforce</h4>
+                    <p class="text-xs text-secondary mt-1">Log communication history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wall of Love / Testimonials Section -->
+    <section class="py-24 px-6 border-b border-border bg-surface/30">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-semibold tracking-tight text-primary mb-4">Loved by developers.</h2>
+                <p class="text-secondary">Join 5,000+ engineers shipping emails with Ongage.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-border shadow-sm flex flex-col h-full hover:shadow-card transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">JD</div>
+                        <div>
+                            <div class="text-[13px] font-semibold text-primary">John Doe</div>
+                            <div class="text-[11px] text-secondary">CTO @ Acme</div>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-secondary leading-relaxed">
+                        "Finally, an email service that treats templates like code. The version control and testing features are a game changer for our engineering team."
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-border shadow-sm flex flex-col h-full hover:shadow-card transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs">SK</div>
+                        <div>
+                            <div class="text-[13px] font-semibold text-primary">Sarah Kim</div>
+                            <div class="text-[11px] text-secondary">Lead Dev @ Startup</div>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-secondary leading-relaxed">
+                        "The observability is incredible. We can trace a single email through the entire stack in milliseconds. Debugging used to take hours, now it takes seconds."
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-border shadow-sm flex flex-col h-full hover:shadow-card transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold text-xs">MR</div>
+                        <div>
+                            <div class="text-[13px] font-semibold text-primary">Mike Ross</div>
+                            <div class="text-[11px] text-secondary">Engineering @ Scale</div>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-secondary leading-relaxed">
+                        "Smart routing saved us 30% on our email infrastructure bill in the first month. It just works seamlessly in the background."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer/API Section -->
+    <section class="py-24 bg-surface/50 border-b border-border overflow-hidden relative">
+        <div class="max-w-[1100px] mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <div class="inline-flex items-center gap-2 border border-border bg-white px-2.5 py-1 rounded-[6px] mb-6 shadow-sm">
+                        <iconify-icon icon="solar:code-scan-linear" width="14" class="text-accent"></iconify-icon>
+                        <span class="text-[11px] font-medium tracking-wide text-primary">Developer First</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-primary">REST API designed for speed.</h2>
+                    <p class="text-secondary text-lg mb-8 leading-relaxed">
+                        Typed SDKs for Node, Python, and Go. Webhooks that actually arrive on time. Documentation that you'll actually enjoy reading.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5" width="20"></iconify-icon>
+                            <span class="text-sm text-secondary">Idempotent requests to prevent duplicate sends</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5" width="20"></iconify-icon>
+                            <span class="text-sm text-secondary">Detailed error messages and validation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="solar:check-circle-bold" class="text-primary mt-0.5" width="20"></iconify-icon>
+                            <span class="text-sm text-secondary">High-throughput batch endpoints</span>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="text-primary border-b border-primary/20 pb-0.5 hover:border-primary transition-colors text-sm font-medium inline-flex items-center gap-1">
+                        Read the docs
+                        <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="md:w-1/2 w-full">
+                    <div class="bg-[#1e1e1e] rounded-lg border border-black/10 shadow-2xl overflow-hidden font-mono text-xs transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="flex items-center justify-between px-4 py-3 bg-[#252525] border-b border-white/5">
+                            <span class="text-gray-400">POST /v1/messages</span>
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                <span class="text-green-400">200 OK</span>
+                            </div>
+                        </div>
+                        <div class="p-6 text-gray-300 overflow-x-auto bg-[#1e1e1e]">
+<pre><code><span class="text-gray-500">{</span>
+  <span class="text-purple-400">"id"</span>: <span class="text-green-300">"msg_01h2x..."</span>,
+  <span class="text-purple-400">"status"</span>: <span class="text-green-300">"queued"</span>,
+  <span class="text-purple-400">"recipient"</span>: <span class="text-gray-500">{</span>
+    <span class="text-purple-400">"email"</span>: <span class="text-green-300">"alex@acme.com"</span>,
+    <span class="text-purple-400">"status"</span>: <span class="text-green-300">"deliverable"</span>
+  <span class="text-gray-500">}</span>,
+  <span class="text-purple-400">"routing"</span>: <span class="text-gray-500">{</span>
+    <span class="text-purple-400">"provider"</span>: <span class="text-green-300">"aws_ses"</span>,
+    <span class="text-purple-400">"region"</span>: <span class="text-green-300">"us-east-1"</span>,
+    <span class="text-purple-400">"latency"</span>: <span class="text-blue-300">42</span>
+  <span class="text-gray-500">}</span>,
+  <span class="text-purple-400">"timestamp"</span>: <span class="text-blue-300">1694182401</span>
+<span class="text-gray-500">}</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-24 px-6 border-b border-border bg-surface/30">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-semibold tracking-tight text-primary mb-4">Simple, transparent pricing.</h2>
+                <p class="text-secondary mb-8">Start for free, scale as you grow.</p>
+
+                <div class="inline-flex items-center p-1 bg-white border border-border rounded-lg shadow-sm">
+                    <button class="px-4 py-1.5 text-[13px] font-medium text-primary bg-surface rounded-[4px] shadow-sm transition-all">Monthly</button>
+                    <button class="px-4 py-1.5 text-[13px] font-medium text-secondary hover:text-primary transition-all">Yearly (-20%)</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white border border-border rounded-xl p-6 hover:shadow-card transition-all flex flex-col">
+                    <div class="mb-4">
+                        <h3 class="text-sm font-semibold text-primary">Developer</h3>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-primary">$0</span>
+                            <span class="text-secondary text-sm">/mo</span>
+                        </div>
+                        <p class="text-xs text-secondary mt-2">Perfect for side projects and hobbies.</p>
+                    </div>
+                    <div class="border-t border-border my-4"></div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            10,000 emails/mo
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            3-day log retention
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            1 dedicated domain
+                        </li>
+                    </ul>
+                    <button class="w-full py-2 border border-border rounded-lg text-[13px] font-medium text-primary hover:bg-surface transition-colors">Start for free</button>
+                </div>
+
+                <div class="bg-white border border-accent/30 ring-1 ring-accent/30 rounded-xl p-6 shadow-glow transition-all flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-3">
+                         <iconify-icon icon="solar:star-bold" class="text-accent/20 rotate-12" width="60"></iconify-icon>
+                    </div>
+                    <div class="mb-4 relative z-10">
+                        <div class="flex items-center justify-between mb-1">
+                             <h3 class="text-sm font-semibold text-accent">Startup</h3>
+                             <span class="bg-accent/10 text-accent text-[10px] font-semibold px-2 py-0.5 rounded-full">Most Popular</span>
+                        </div>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-primary">$35</span>
+                            <span class="text-secondary text-sm">/mo</span>
+                        </div>
+                        <p class="text-xs text-secondary mt-2">For growing teams and applications.</p>
+                    </div>
+                    <div class="border-t border-border my-4"></div>
+                    <ul class="space-y-3 mb-8 flex-1 relative z-10">
+                         <li class="flex items-start gap-2 text-[13px] text-primary font-medium">
+                            <iconify-icon icon="solar:check-read-bold" class="text-accent mt-0.5"></iconify-icon>
+                            100,000 emails/mo
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            30-day log retention
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            Unlimited domains
+                        </li>
+                         <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            Smart Routing
+                        </li>
+                    </ul>
+                    <button class="w-full py-2 bg-primary text-white rounded-lg text-[13px] font-medium hover:bg-neutral-800 transition-colors shadow-subtle">Get Started</button>
+                </div>
+
+                <div class="bg-white border border-border rounded-xl p-6 hover:shadow-card transition-all flex flex-col">
+                    <div class="mb-4">
+                        <h3 class="text-sm font-semibold text-primary">Enterprise</h3>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-bold text-primary">Custom</span>
+                        </div>
+                        <p class="text-xs text-secondary mt-2">For large scale volume and control.</p>
+                    </div>
+                    <div class="border-t border-border my-4"></div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                         <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            Unlimited volume
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            90-day log retention
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            Dedicated IP pools
+                        </li>
+                        <li class="flex items-start gap-2 text-[13px] text-secondary">
+                            <iconify-icon icon="solar:check-read-linear" class="text-primary mt-0.5"></iconify-icon>
+                            SSO &amp; SAML
+                        </li>
+                    </ul>
+                    <button class="w-full py-2 border border-border rounded-lg text-[13px] font-medium text-primary hover:bg-surface transition-colors">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple CTA -->
+    <section class="py-24 px-6 border-b border-border bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold text-primary mb-4 tracking-tight">Ready to start building?</h2>
+            <p class="text-secondary mb-8">Create an account and send your first email in less than 5 minutes. No credit card required for development.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button class="w-full sm:w-auto bg-primary text-white font-medium px-6 py-2.5 rounded-[6px] hover:bg-neutral-800 transition-colors shadow-subtle flex items-center justify-center gap-2">
+                    Get API Key
+                    <iconify-icon icon="solar:key-minimalistic-square-linear" width="16" class="text-white/60"></iconify-icon>
+                </button>
+                <button class="w-full sm:w-auto text-primary border border-border bg-white font-medium px-6 py-2.5 rounded-[6px] hover:bg-surface transition-colors">
+                    Contact Sales
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-16 pb-8 px-6">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                <div class="max-w-[280px]">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-primary text-white rounded-[4px] flex items-center justify-center">
+                            <iconify-icon icon="solar:layers-minimalistic-bold" width="14"></iconify-icon>
+                        </div>
+                        <span class="font-semibold text-sm tracking-tight">Ongage</span>
+                    </div>
+                    <div class="text-[13px] text-secondary mb-6 leading-relaxed">
+                        The email infrastructure for modern software teams. Reliability, visibility, and control in one platform.
+                    </div>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="Enter your email" class="bg-surface border border-border rounded px-3 py-1.5 text-[13px] w-full focus:outline-none focus:border-primary transition-colors">
+                        <button type="button" class="bg-surface border border-border text-primary px-3 py-1.5 rounded text-[13px] font-medium hover:bg-gray-100 transition-colors">Sub</button>
+                    </form>
+                </div>
+
+                <div class="flex gap-16 flex-wrap">
+                    <div>
+                        <h4 class="text-[13px] font-semibold text-primary mb-4">Product</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Infrastructure</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Observability</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Templates</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[13px] font-semibold text-primary mb-4">Developers</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Documentation</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">API Reference</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Status</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Github</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-[13px] font-semibold text-primary mb-4">Company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">About</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Blog</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Careers</a></li>
+                            <li><a href="#" class="text-[13px] text-secondary hover:text-primary transition-colors">Legal</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between border-t border-border pt-8 gap-4">
+                <div class="text-[12px] text-secondary">&copy; 2024 Ongage Inc. All rights reserved.</div>
+                <div class="flex gap-4">
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><iconify-icon icon="solar:brand-x-linear" width="16"></iconify-icon></a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><iconify-icon icon="solar:brand-github-linear" width="16"></iconify-icon></a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><iconify-icon icon="solar:brand-linkedin-linear" width="16"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body></html>
