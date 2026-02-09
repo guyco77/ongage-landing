@@ -201,19 +201,19 @@ opacity: 1;
                         <!-- Body with user's exact bad text + squiggly underlines -->
                         <div class="flex-1">
                             <span class="text-[10px] text-secondary font-medium uppercase tracking-wide">Body</span>
-                            <div class="mt-1.5 bg-white border border-border rounded-lg p-3 h-[220px] relative overflow-hidden">
+                            <div class="mt-1.5 bg-white border border-border rounded-lg p-3 h-[220px] flex flex-col">
                                 <style>
                                     .squiggly { text-decoration: underline wavy red; text-decoration-skip-ink: none; text-underline-offset: 2px; }
                                 </style>
-                                <div class="space-y-2 text-[11px] text-primary/60 leading-relaxed">
+                                <div class="space-y-2 text-[11px] text-primary/60 leading-relaxed flex-1">
                                     <p>Hi {{name}},</p>
                                     <p>We are very <span class="squiggly">exited</span> to tell you about our new <span class="squiggly">offr</span> that is very <span class="squiggly">amazin</span> and you should check it out now<span class="text-red-400">!!!</span></p>
                                     <p>This email is sent to <span class="squiggly">all our usrs</span> and we hope you like it.</p>
                                     <p><span class="squiggly">Click here</span> to learn more about the deal because it is very good and <span class="squiggly">limitd</span> and you should not miss it.</p>
                                     <p class="text-primary/40">Thanks,<br>The Team</p>
                                 </div>
-                                <div class="absolute bottom-3 left-3 right-3 bg-red-50 border border-red-200 rounded-lg p-2 flex items-center gap-2">
-                                    <iconify-icon icon="solar:danger-triangle-linear" width="14" class="text-red-400"></iconify-icon>
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-2 flex items-center gap-2 mt-auto shrink-0">
+                                    <iconify-icon icon="solar:danger-triangle-linear" width="14" class="text-red-400 shrink-0"></iconify-icon>
                                     <span class="text-[10px] text-red-500 font-medium">Sent at 3:17 AM &bull; To everyone &bull; Again.</span>
                                 </div>
                             </div>
@@ -267,22 +267,21 @@ opacity: 1;
                         <!-- Body with AI -->
                         <div class="flex-1">
                             <span class="text-[10px] text-secondary font-medium uppercase tracking-wide">Body</span>
-                            <div class="mt-1.5 bg-white border border-border rounded-lg p-3 h-[220px] relative overflow-hidden">
-                                <div class="space-y-2 text-[11px] text-primary/80 leading-relaxed">
+                            <div class="mt-1.5 bg-white border border-border rounded-lg p-3 h-[220px] relative overflow-hidden flex flex-col">
+                                <div class="space-y-1.5 text-[11px] text-primary/80 leading-relaxed flex-1">
                                     <p>Hi <span class="bg-amber-100 px-0.5 rounded text-amber-700 font-medium">{{FirstName}}</span>,</p>
-                                    <p class="text-primary/70">Based on your last campaign performance, we picked an offer your audience actually clicks on.</p>
-                                    <div class="space-y-1 my-1.5">
-                                        <div class="flex items-center gap-1.5 text-[10px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="12"></iconify-icon> Optimized subject line</div>
-                                        <div class="flex items-center gap-1.5 text-[10px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="12"></iconify-icon> Personalized content</div>
-                                        <div class="flex items-center gap-1.5 text-[10px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="12"></iconify-icon> CTA placed where it converts</div>
-                                        <div class="flex items-center gap-1.5 text-[10px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="12"></iconify-icon> Sent at the right time</div>
+                                    <p class="text-primary/70 text-[10px]">Based on your last campaign performance, we picked an offer your audience actually clicks on.</p>
+                                    <div class="space-y-0.5 my-1">
+                                        <div class="flex items-center gap-1.5 text-[9px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="11"></iconify-icon> Optimized subject line</div>
+                                        <div class="flex items-center gap-1.5 text-[9px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="11"></iconify-icon> Personalized content</div>
+                                        <div class="flex items-center gap-1.5 text-[9px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="11"></iconify-icon> CTA placed where it converts</div>
+                                        <div class="flex items-center gap-1.5 text-[9px] text-green-600"><iconify-icon icon="solar:check-circle-bold" width="11"></iconify-icon> Sent at the right time</div>
                                     </div>
-                                    <p class="text-primary/70 font-medium">Ready to send a better email &mdash; faster?</p>
-                                    <div class="inline-block bg-accent text-white text-[9px] font-semibold px-3 py-1 rounded">Upgrade now</div>
+                                    <div class="inline-block bg-accent text-white text-[9px] font-semibold px-3 py-1 rounded">Upgrade Now &rarr;</div>
                                 </div>
-                                <div class="absolute bottom-3 left-3 right-3 bg-gradient-to-r from-accent/5 to-purple-50 border border-accent/10 rounded-lg p-2 flex items-center gap-2">
-                                    <iconify-icon icon="solar:magic-stick-3-linear" width="14" class="text-accent"></iconify-icon>
-                                    <span class="text-[10px] text-accent font-medium">Smarter emails, written with context &mdash; not guesswork.</span>
+                                <div class="bg-gradient-to-r from-accent/5 to-purple-50 border border-accent/10 rounded-lg p-2 flex items-center gap-2 mt-auto shrink-0">
+                                    <iconify-icon icon="solar:magic-stick-3-linear" width="14" class="text-accent shrink-0"></iconify-icon>
+                                    <span class="text-[9px] text-accent font-medium">Smarter emails, written with context &mdash; not guesswork.</span>
                                 </div>
                             </div>
                         </div>
