@@ -302,63 +302,194 @@ opacity: 1;
         </div>
     </main>
 
-    <!-- Section 2: Feature Trio -->
+    <!-- Section 2: Features Bento Grid -->
     <section id="features" class="py-24 px-6 bg-surface/30 border-t border-border">
         <div class="max-w-[1100px] mx-auto">
-            <div class="text-center mb-16">
+            <div class="mb-16">
                 <h2 class="text-3xl font-semibold tracking-tight text-primary mb-4">Built for Growing Teams</h2>
-                <p class="text-secondary max-w-lg mx-auto">Everything you need to create, optimize, and scale your email marketing — powered by AI.</p>
+                <p class="text-secondary max-w-lg">Everything you need to create, optimize, and scale your email marketing — powered by AI.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                <!-- Feature 1: AI Email Editor -->
-                <div class="group border border-border rounded-xl bg-white hover:shadow-card hover:border-accent/30 transition-all duration-300 p-8 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
-                        <iconify-icon icon="solar:bolt-bold" width="28"></iconify-icon>
+                <!-- Feature 1: AI Email Editor (Wide card with mockup) -->
+                <div class="col-span-1 md:col-span-2 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row h-full">
+                    <div class="p-8 flex flex-col justify-center md:w-1/2 relative z-10">
+                        <div class="w-10 h-10 bg-accent/10 border border-accent/20 rounded-[8px] flex items-center justify-center mb-6 text-accent">
+                            <iconify-icon icon="solar:bolt-bold" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">AI Email Editor</h3>
+                        <p class="text-sm text-secondary leading-relaxed">
+                            Smart writing assistance that crafts compelling subject lines and body copy. Just describe your goal and let AI do the heavy lifting.
+                        </p>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-3">AI Email Editor</h3>
-                    <p class="text-sm text-secondary leading-relaxed">
-                        Smart writing assistance that crafts compelling subject lines and body copy. Just describe your goal and let AI do the heavy lifting.
-                    </p>
-                    <div class="mt-6 pt-6 border-t border-border w-full">
-                        <div class="flex items-center justify-center gap-4 text-[11px] text-secondary">
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-accent"></iconify-icon> Auto subject lines</span>
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-accent"></iconify-icon> Tone control</span>
+                    <div class="md:w-1/2 bg-surface/50 border-l border-border relative flex items-center justify-center p-6 overflow-hidden">
+                        <!-- AI Editor Mockup -->
+                        <div class="bg-white border border-border rounded-lg shadow-sm w-full max-w-[320px] h-[220px] flex overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                            <!-- Sidebar -->
+                            <div class="w-12 border-r border-border bg-gray-50 flex flex-col items-center py-3 gap-3">
+                                <div class="w-6 h-6 rounded bg-accent/10 border border-accent/20 shadow-sm flex items-center justify-center">
+                                    <iconify-icon icon="solar:magic-stick-3-linear" width="12" class="text-accent"></iconify-icon>
+                                </div>
+                                <div class="w-6 h-6 rounded bg-white border border-border shadow-sm"></div>
+                                <div class="w-6 h-6 rounded bg-white border border-border shadow-sm"></div>
+                                <div class="mt-auto w-6 h-6 rounded-full bg-gray-200"></div>
+                            </div>
+                            <!-- Canvas -->
+                            <div class="flex-1 p-4 bg-white relative">
+                                <div class="absolute top-2 right-2 flex gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                </div>
+                                <div class="border border-dashed border-gray-200 rounded p-2 h-full flex flex-col gap-2">
+                                    <div class="h-5 bg-accent/5 border border-accent/20 rounded w-full flex items-center px-2">
+                                        <span class="text-[7px] text-accent font-medium">AI: Your exclusive early access is waiting</span>
+                                    </div>
+                                    <div class="h-16 bg-gray-100 rounded w-full flex items-center justify-center text-[10px] text-gray-400">Header Image</div>
+                                    <div class="space-y-1.5 p-1">
+                                        <div class="h-2 bg-gray-100 rounded w-3/4"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-full"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-5/6"></div>
+                                    </div>
+                                    <div class="h-6 w-24 bg-primary text-white text-[8px] flex items-center justify-center rounded self-start mt-auto">Shop Now</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Feature 2: AI Analytics -->
-                <div class="group border border-border rounded-xl bg-white hover:shadow-card hover:border-accent/30 transition-all duration-300 p-8 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-blue-50 border border-blue-200 rounded-2xl flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition-transform">
-                        <iconify-icon icon="solar:chart-2-bold" width="28"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-semibold text-primary mb-3">AI Analytics</h3>
-                    <p class="text-sm text-secondary leading-relaxed">
-                        Automatic optimization insights that tell you what's working and what to improve. No data science degree required.
-                    </p>
-                    <div class="mt-6 pt-6 border-t border-border w-full">
-                        <div class="flex items-center justify-center gap-4 text-[11px] text-secondary">
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-blue-500"></iconify-icon> Real-time stats</span>
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-blue-500"></iconify-icon> Smart tips</span>
+                <!-- Feature 2: AI Analytics (Tall card with live stats) -->
+                <div class="col-span-1 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden h-[400px]">
+                    <div class="p-8 h-full flex flex-col relative z-10">
+                        <div class="w-10 h-10 bg-blue-50 border border-blue-200 rounded-[8px] flex items-center justify-center mb-6 text-blue-600">
+                            <iconify-icon icon="solar:chart-2-bold" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">AI Analytics</h3>
+                        <p class="text-sm text-secondary leading-relaxed mb-6">
+                            Automatic optimization insights that tell you what's working and what to improve.
+                        </p>
+
+                        <!-- Live Stats UI -->
+                        <div class="mt-auto -mx-8 -mb-8 border-t border-border">
+                            <div class="bg-surface/30 p-4 space-y-2">
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm hover:border-green-200 transition-colors cursor-default">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+                                        <span class="font-mono text-primary font-medium">open rate +12%</span>
+                                    </div>
+                                    <span class="text-secondary">now</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm opacity-60">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                        <span class="font-mono text-secondary">best send time: 9am</span>
+                                    </div>
+                                    <span class="text-secondary">tip</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[10px] bg-white border border-border p-2 rounded shadow-sm opacity-40">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
+                                        <span class="font-mono text-secondary">subject A wins</span>
+                                    </div>
+                                    <span class="text-secondary">test</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Feature 3: Localized Templates -->
-                <div class="group border border-border rounded-xl bg-white hover:shadow-card hover:border-accent/30 transition-all duration-300 p-8 flex flex-col items-center text-center">
-                    <div class="w-14 h-14 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 group-hover:scale-110 transition-transform">
-                        <iconify-icon icon="solar:global-bold" width="28"></iconify-icon>
+                <div class="col-span-1 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="w-10 h-10 bg-emerald-50 border border-emerald-200 rounded-[8px] flex items-center justify-center mb-6 text-emerald-600">
+                            <iconify-icon icon="solar:global-bold" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">Localized Templates</h3>
+                        <p class="text-sm text-secondary leading-relaxed mb-8">
+                            Pre-translated designs ready for any market. Reach global audiences with templates that feel local.
+                        </p>
+
+                        <!-- Language Cards -->
+                        <div class="relative flex-1 min-h-[140px] flex flex-col items-center justify-center">
+                            <div class="absolute inset-0 flex justify-center">
+                                <div class="w-[1px] h-full bg-gradient-to-b from-border via-border to-transparent"></div>
+                            </div>
+
+                            <div class="z-10 bg-white border border-border text-[10px] px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1 mb-6 animate-pulse">
+                                <iconify-icon icon="solar:translation-linear" width="12"></iconify-icon>
+                                Auto-Translate
+                            </div>
+
+                            <div class="flex gap-4 z-10 w-full justify-between px-2 mt-auto">
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-[10px] font-bold group-hover:border-emerald-400 group-hover:text-emerald-600 transition-colors">
+                                        EN
+                                    </div>
+                                    <span class="text-[8px] text-secondary">English</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-[10px] font-bold opacity-70">
+                                        PT
+                                    </div>
+                                    <span class="text-[8px] text-secondary">Portuguese</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-8 h-8 rounded bg-white border border-border flex items-center justify-center shadow-sm text-[10px] font-bold opacity-50">
+                                        ES
+                                    </div>
+                                    <span class="text-[8px] text-secondary">Spanish</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-semibold text-primary mb-3">Localized Templates</h3>
-                    <p class="text-sm text-secondary leading-relaxed">
-                        Pre-translated designs ready for any market. Reach global audiences with templates that feel local from day one.
-                    </p>
-                    <div class="mt-6 pt-6 border-t border-border w-full">
-                        <div class="flex items-center justify-center gap-4 text-[11px] text-secondary">
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-emerald-500"></iconify-icon> 20+ languages</span>
-                            <span class="flex items-center gap-1"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-emerald-500"></iconify-icon> RTL support</span>
+                </div>
+
+                <!-- Feature 4: Smart Automation (Wide card, reversed) -->
+                <div class="col-span-1 md:col-span-2 group border border-border rounded-xl bg-white hover:shadow-card transition-all duration-300 relative overflow-hidden flex flex-col md:flex-row-reverse h-full">
+                    <div class="p-8 flex flex-col justify-center md:w-1/2 relative z-10">
+                        <div class="w-10 h-10 bg-surface border border-border rounded-[8px] flex items-center justify-center mb-6 text-primary">
+                            <iconify-icon icon="solar:tuning-square-2-linear" width="20"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-semibold text-primary mb-2">Smart Automation</h3>
+                        <p class="text-sm text-secondary leading-relaxed">
+                            Set up welcome sequences, abandoned cart reminders, and re-engagement flows. AI picks the best send time for each contact.
+                        </p>
+                    </div>
+
+                    <!-- Visual Side -->
+                    <div class="md:w-1/2 bg-surface/50 border-r border-border relative flex items-center justify-center p-8 overflow-hidden">
+                        <div class="bg-white border border-border rounded-xl shadow-sm w-full max-w-[280px] p-4 transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] font-semibold text-secondary uppercase tracking-wider">Welcome Flow</span>
+                                <span class="text-[10px] text-green-600 bg-green-50 border border-green-100 px-1.5 py-0.5 rounded font-medium">Active</span>
+                            </div>
+
+                            <!-- Flow steps -->
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-[8px] font-bold shrink-0">1</div>
+                                    <div class="flex-1 bg-accent/5 border border-accent/20 rounded p-1.5">
+                                        <span class="text-[9px] text-accent font-medium">Welcome email</span>
+                                    </div>
+                                    <span class="text-[8px] text-green-600">98%</span>
+                                </div>
+                                <div class="flex justify-center"><div class="w-[1px] h-3 bg-border"></div></div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-gray-200 text-primary flex items-center justify-center text-[8px] font-bold shrink-0">2</div>
+                                    <div class="flex-1 bg-surface border border-border rounded p-1.5">
+                                        <span class="text-[9px] text-secondary">Wait 2 days</span>
+                                    </div>
+                                    <span class="text-[8px] text-secondary">auto</span>
+                                </div>
+                                <div class="flex justify-center"><div class="w-[1px] h-3 bg-border"></div></div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-gray-200 text-primary flex items-center justify-center text-[8px] font-bold shrink-0">3</div>
+                                    <div class="flex-1 bg-surface border border-border rounded p-1.5">
+                                        <span class="text-[9px] text-secondary">Product showcase</span>
+                                    </div>
+                                    <span class="text-[8px] text-green-600">64%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
